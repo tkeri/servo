@@ -5111,7 +5111,7 @@ dependencies = [
 [[package]]
 name = "surfman"
 version = "0.23.0"
-source = "git+https://github.com/asajeffrey/surfman?branch=redo-features#39561798b8f8136e6e0a7ab552de73e980225226"
+source = "git+https://github.com/asajeffrey/surfman?branch=servo#e56fe7adbcfa79dc270328167ce4169111a34e5a"
 dependencies = [
  "bitflags",
  "cgl 0.3.2",
