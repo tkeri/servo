@@ -45,6 +45,7 @@ def main(task_for):
             "try": all_tests,
             "try-taskcluster": [
                 # Add functions here as needed, in your push to that branch
+                linux_tidy_unit_docs
             ],
             "master": [
                 upload_docs,
@@ -176,19 +177,19 @@ def linux_tidy_unit_docs():
         linux_build_task("Tidy + dev build + unit tests + docs")
         .with_treeherder("Linux x64", "Tidy+Unit+Doc")
         .with_script("""
-            ./mach test-tidy --no-progress --all
-            ./mach build --dev
-            ./mach test-unit
-            ./mach package --dev
-            ./mach build --dev --features canvas2d-raqote
-            ./mach build --dev --features layout-2020
-            ./mach build --dev --libsimpleservo
-            ./mach test-tidy --no-progress --self-test
+#            ./mach test-tidy --no-progress --all
+#            ./mach build --dev
+#            ./mach test-unit
+#            ./mach package --dev
+#            ./mach build --dev --features canvas2d-raqote
+#            ./mach build --dev --features layout-2020
+#            ./mach build --dev --libsimpleservo
+#            ./mach test-tidy --no-progress --self-test
 
-            ./etc/memory_reports_over_time.py --test
-            ./etc/taskcluster/mock.py
-            ./etc/ci/lockfile_changed.sh
-            ./etc/ci/check_no_panic.sh
+#            ./etc/memory_reports_over_time.py --test
+#            ./etc/taskcluster/mock.py
+#            ./etc/ci/lockfile_changed.sh
+#            ./etc/ci/check_no_panic.sh
 
             rustup component add rust-docs
             RUSTDOCFLAGS="--disable-minification" ./mach doc
@@ -752,7 +753,7 @@ def linux_build_task(name, *, build_env=build_env):
         .with_caches(**{
             "servo-cargo-registry": "/root/.cargo/registry",
             "servo-cargo-git": "/root/.cargo/git",
-            "servo-rustup": "/root/.rustup",
+#            "servo-rustup": "/root/.rustup",
             "servo-sccache": "/root/.cache/sccache",
             "servo-gradle": "/root/.gradle",
         })
