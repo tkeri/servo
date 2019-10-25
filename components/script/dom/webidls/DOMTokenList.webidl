@@ -21,9 +21,8 @@ interface DOMTokenList {
   [CEReactions, Throws]
   void replace(DOMString token, DOMString newToken);
 
-  [CEReactions, Pure]
-           attribute DOMString value;
+  [CEReactions]
+  stringifier attribute DOMString value;
 
-  stringifier;
   iterable<DOMString?>;
 };
